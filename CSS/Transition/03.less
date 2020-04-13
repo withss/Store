@@ -1,0 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #a55eea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  main {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    .fa {
+      position: absolute;
+      font-size: 100px;
+      color: #a5b1c2;
+      transition: 2s;
+    }
+  }
+  main:hover .fa {
+    transform: scale(3);
+    color: #ff3838;
+    opacity: 0;
+  }
+  main:hover .fa:nth-of-type(2) {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

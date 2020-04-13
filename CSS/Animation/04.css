@@ -1,0 +1,48 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+body main {
+  flex: 1;
+  background: #95a5a6;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+}
+body main div {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(at center, #f1c40f, #e67e22, #d35400);
+  justify-self: center;
+  animation-name: ball;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+body main div:nth-child(1) {
+  animation-timing-function: ease;
+}
+body main div:nth-child(2) {
+  animation-timing-function: ease-in;
+}
+body main div:nth-child(3) {
+  animation-timing-function: ease-out;
+}
+body main div:nth-child(4) {
+  animation-timing-function: ease-in-out;
+}
+body main div:nth-child(5) {
+  animation-timing-function: linear;
+}
+@keyframes ball {
+  to {
+    transform: translateY(90vh);
+  }
+}

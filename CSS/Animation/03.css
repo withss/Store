@@ -1,0 +1,92 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 8vh 1fr 8vh;
+}
+body header {
+  background: #4a69bd;
+  text-align: center;
+  line-height: 8vh;
+  font-size: 1.5em;
+  color: white;
+  animation-name: translatex;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+body main {
+  background: url(../../images/02.jpg) no-repeat;
+  background-size: cover;
+  animation-name: translatey;
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+}
+body main div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  color: white;
+  margin: 50px 20px;
+  padding: 10px;
+  border-radius: 5%;
+  opacity: 0.8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  animation-name: rotate;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+}
+body main div:nth-of-type(1) {
+  background: orangered;
+  animation-delay: 1.5s;
+}
+body main div:nth-of-type(2) {
+  background: purple;
+  animation-delay: 2s;
+}
+body footer {
+  background: #0a3d62;
+  text-align: center;
+  line-height: 8vh;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  color: white;
+  animation-name: translatey;
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+}
+@keyframes translatex {
+  from {
+    transform: translate(-100%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes translatey {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes rotate {
+  from {
+    transform: scale(0) rotate(0);
+  }
+  to {
+    transform: scale(1) rotate(360deg);
+  }
+}

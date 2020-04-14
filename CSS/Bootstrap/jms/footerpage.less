@@ -1,0 +1,21 @@
+.footerpage {
+  display: flex;
+  a {
+    display: block;
+    padding: 0.1rem 0.5rem;
+    border: solid 1px #ddd;
+    border-left: none;
+    &:first-child {
+      border-left: solid 1px #ddd;
+      border-top-left-radius: 0.2rem;
+      border-bottom-left-radius: 0.2rem;
+    }
+    &:last-child {
+      border-top-right-radius: 0.2rem;
+      border-bottom-right-radius: 0.2rem;
+    }
+  }
+  .current {
+    background: #2ecc71;
+  }
+}

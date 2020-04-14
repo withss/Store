@@ -1,0 +1,19 @@
+.list-group li {
+  display: flex;
+  border-bottom: solid 1px #ddd;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+}
+.list-group li:last-of-type {
+  border-bottom: none;
+}
+.list-group li:hover a {
+  color: lightseagreen;
+}
+.list-group li a {
+  margin-right: auto;
+}
+.list-group li span {
+  font-size: 0.5rem;
+  color: #888;
+}

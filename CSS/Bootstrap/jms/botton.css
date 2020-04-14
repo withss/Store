@@ -1,0 +1,26 @@
+.card-footer .botton {
+  padding: 0.2rem 1rem;
+  border-radius: 0.2rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.card-footer .botton:nth-child(1) {
+  border: solid 1px #2ecc71;
+}
+.card-footer .botton:nth-child(1):hover {
+  background: #2ecc71;
+}
+.card-footer .botton:nth-child(1):hover span,
+.card-footer .botton:nth-child(1):hover .fa-pencil-square-o {
+  color: white;
+}
+.card-footer .botton:nth-child(2) {
+  border: solid 1px #e67e22;
+}
+.card-footer .botton:nth-child(2):hover {
+  background: #e67e22;
+}
+.card-footer .botton:nth-child(2):hover span,
+.card-footer .botton:nth-child(2):hover .fa-flag {
+  color: white;
+}

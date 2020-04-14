@@ -13,4 +13,5 @@
 .card .card-footer {
   padding: 0.5rem 1rem;
   border-top: solid 1px #ddd;
+  display: flex;
 }

@@ -26,7 +26,6 @@ body main article {
 body main article div {
   width: 200px;
   height: 200px;
-  background: green;
   overflow: hidden;
   position: absolute;
   top: 50%;

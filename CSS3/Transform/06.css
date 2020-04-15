@@ -13,7 +13,9 @@ body {
 }
 body main {
   width: 400px;
-  height: 400px;
+  height: 200px;
+  border: solid 2px gray;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,6 +31,7 @@ body main div strong {
   text-align: center;
   vertical-align: center;
   transition: 1s;
+  cursor: pointer;
 }
 body main div strong:nth-of-type(1) {
   background: #f79f1f;
@@ -36,11 +39,11 @@ body main div strong:nth-of-type(1) {
 body main div strong:nth-of-type(2) {
   background: #009432;
 }
-body main div:hover strong:nth-of-type(1):hover {
+body main div strong:nth-of-type(1):hover {
   font-size: 1.5em;
   transform: rotate(180deg);
 }
-body main div:hover strong:nth-of-type(2):hover {
+body main div strong:nth-of-type(2):hover {
   font-size: 1.5em;
   transform: rotate(-360deg);
 }

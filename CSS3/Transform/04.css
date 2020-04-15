@@ -6,47 +6,54 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: #9980fa;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 body main {
-  flex: 1;
+  width: 800px;
+  height: 400px;
   display: flex;
-  justify-content: center;
+  background: #9980fa;
+  justify-content: space-evenly;
   align-items: center;
 }
-body main ul {
+body main div {
+  width: 200px;
+  height: 3em;
   list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body main ul li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding-left: 2em;
+  align-items: stretch;
   cursor: pointer;
 }
-body main ul li strong {
+body main div h3 {
+  line-height: 3em;
   text-transform: uppercase;
   background: orange;
-  padding: 0.5em;
+  text-align: center;
 }
-body main ul li div {
+body main div ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
   transform: scale(0);
-  transition: 0.3s;
 }
-body main ul li div a {
+body main div li {
+  margin-top: 2px;
+}
+body main div li a {
   text-decoration: none;
   display: block;
   color: white;
+  text-align: center;
   background: green;
   padding: 1em;
-  margin: 0.2em;
 }
-body main ul li:hover strong + div {
+body main div:hover ul {
   transform: scale(1);
   transform-origin: top left;
 }

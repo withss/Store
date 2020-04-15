@@ -3,14 +3,15 @@
   margin: 0;
   box-sizing: border-box;
 }
-body {
-  background: #0a3d62;
-}
 body main {
+  width: 400px;
+  height: 200px;
+  border-radius: 10px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background: #0a3d62;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,31 +19,31 @@ body main {
 body main .btn {
   width: 240px;
   height: 60px;
-  display: block;
   background: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  border: solid 6px #e55039;
+  border: solid 5px #e67e22;
+  border-radius: 6px;
   overflow: hidden;
   position: relative;
   cursor: pointer;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main .btn a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
 }
 body main .btn::after {
   content: '';
-  height: 100%;
   width: 0;
+  height: 100%;
+  background: #d35400;
   position: absolute;
-  top: 0;
-  left: -50% 0;
-  background: #eb2f06;
+  align-self: center;
   z-index: -1;
   transform: skewX(45deg);
-  align-self: center;
   transition: 0.5s;
 }
 body main .btn:hover::after {

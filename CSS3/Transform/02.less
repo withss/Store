@@ -5,13 +5,12 @@
 }
 body {
   background: #a4b0be;
+  width: 100vw;
+  height: 100vh;
   main {
-    width: 260px;
-    height: 260px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 100px;
+    margin: 200px auto;
     border: solid 2px silver;
     border-radius: 8px;
     display: flex;
@@ -21,6 +20,7 @@ body {
     .filed {
       position: relative;
       overflow: hidden;
+      cursor: pointer;
       input {
         outline: none;
         border: none;
@@ -39,8 +39,12 @@ body {
       transform: translateX(-100%);
     }
     .filed:hover::before {
-      transition: 2s;
-      transform: translateX(100%);
+      animation: slid 2s infinite alternate linear;
     }
+  }
+}
+@keyframes slid {
+  to {
+    transform: translateX(100%);
   }
 }

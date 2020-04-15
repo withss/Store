@@ -12,7 +12,9 @@ body {
   align-items: center;
   main {
     width: 400px;
-    height: 400px;
+    height: 200px;
+    border: solid 2px gray;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,21 +28,22 @@ body {
         text-align: center;
         vertical-align: center;
         transition: 1s;
+        cursor: pointer;
+        &:nth-of-type(1) {
+          background: #f79f1f;
+        }
+        &:nth-of-type(2) {
+          background: #009432;
+        }
+        &:nth-of-type(1):hover {
+          font-size: 1.5em;
+          transform: rotate(180deg);
+        }
+        &:nth-of-type(2):hover {
+          font-size: 1.5em;
+          transform: rotate(-360deg);
+        }
       }
-      strong:nth-of-type(1) {
-        background: #f79f1f;
-      }
-      strong:nth-of-type(2) {
-        background: #009432;
-      }
-    }
-    div:hover strong:nth-of-type(1):hover {
-      font-size: 1.5em;
-      transform: rotate(180deg);
-    }
-    div:hover strong:nth-of-type(2):hover {
-      font-size: 1.5em;
-      transform: rotate(-360deg);
     }
   }
 }

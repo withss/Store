@@ -6,44 +6,51 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: #9980fa;
   display: flex;
+  justify-content: center;
+  align-items: center;
   main {
-    flex: 1;
+    width: 800px;
+    height: 400px;
     display: flex;
-    justify-content: center;
+    background: #9980fa;
+    justify-content: space-evenly;
     align-items: center;
-    ul {
+    div {
+      width: 200px;
+      height: 3em;
       list-style: none;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
-      li {
+      align-items: stretch;
+      cursor: pointer;
+      h3 {
+        line-height: 3em;
+        text-transform: uppercase;
+        background: orange;
+        text-align: center;
+      }
+      ul {
+        list-style: none;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        padding-left: 2em;
-        cursor: pointer;
-        strong {
-          text-transform: uppercase;
-          background: orange;
-          padding: 0.5em;
-        }
-        div {
-          transform: scale(0);
-          transition: 0.3s;
-          a {
-            text-decoration: none;
-            display: block;
-            color: white;
-            background: green;
-            padding: 1em;
-            margin: 0.2em;
-          }
+        align-items: stretch;
+        transform: scale(0);
+      }
+      li {
+        margin-top: 2px;
+        a {
+          text-decoration: none;
+          display: block;
+          color: white;
+          text-align: center;
+          background: green;
+          padding: 1em;
         }
       }
-      li:hover strong + div {
+      &:hover ul {
         transform: scale(1);
         transform-origin: top left;
       }

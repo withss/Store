@@ -7,22 +7,38 @@ body {
   background: #a4b0be;
   width: 100vw;
   height: 100vh;
-  /*  display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
   main {
     width: 400px;
-    height: 400px;
-    /*  position: absolute;
+    height: 200px;
+    background: #dfe4ea;
+    // position: relative;
+    display: grid;
+    grid-template-rows: 25% 50% 25%;
+    grid-template-columns: 25% 50% 25%; //这边也可以用数值
+    div {
+      width: 200px;
+      height: 100px;
+      background: greenyellow;
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-start: 2;
+      grid-column-end: 3;
+      /* grid-row: 2/3;
+      grid-column: 2/3;
+      grid-area: 2/2/4/4; */
+      /*  position: absolute;
     left: 50%;
     top: 50%;
     margin-left: -200px;
     margin-top: -200px; */
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: #dfe4ea;
-    border: solid 2px silver;
+      /* position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: solid 2px silver; */
+    }
   }
 }

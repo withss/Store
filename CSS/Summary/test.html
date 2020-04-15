@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>伪类与伪元素</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        color: pink;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      div {
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(red 0, yellow 30%, black 60%, black 100%);
+        cursor: pointer;
+        /* position: relative; */
+      }
+      div::before {
+        content: '123';
+        border: solid 1px lightblue;
+        display: block;
+        width: 100%;
+        /* position: absolute; */
+      }
+      div span {
+        display: block;
+        border: solid 1px lightblue;
+      }
+      div:hover::before {
+        /* display: block; */
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span>这是div</span>
+    </div>
+  </body>
+</html>

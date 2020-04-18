@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模板字面量</title>
+  </head>
+  <body>
+    <script>
+      let s = [{ title: 123 }, { title: 456 }, { title: 789 }];
+      function template() {
+        return `<ul>${s.map((item) => "<li>" + item.title + "</li>").join(" ")}</ul>`;
+      }
+      document.body.innerHTML = template();
+    </script>
+  </body>
+</html>

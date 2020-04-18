@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数值类型</title>
+  </head>
+  <body>
+    <script>
+      //同理，构造函数和字面量的方式
+      //判断是否是整数
+      const num = 99.552;
+      console.log(Number.isInteger(num));
+      console.log(num.toFixed(2));
+
+      //NaN Not a Number
+      console.log(NaN == NaN); //不能与自己相比较
+      console.log(Number.isNaN(2 / "asd"));
+      console.log(Object.is(2 / "asd", NaN));
+
+      //字符串
+      let str = "12.78shka";
+      console.log(parseInt(str));
+      console.log(parseFloat(str));
+
+      //数组，空数组为0，多个元素则为NaN
+      //空对象为NaN
+
+      //Math
+      let grade = [12, 3, 7, 100];
+      console.log(Math.max(1, 8, 10)); //不能直接放数组
+      console.log(Math.max.apply(null, grade)); //需要用到apply
+      //ceil(),floor(),round()
+      //随机数 Math.random（）
+    </script>
+  </body>
+</html>

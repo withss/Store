@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>字符串</title>
+  </head>
+  <body>
+    <input type="text" name="password" />
+    <span></span>
+    <script>
+      //length属性，toUpperCase(),toLowerCase(),trim(),charAt()
+      //截取 slice(),substring(不接受负数),substr(第二个参数为长度)
+      //查找 indexOf(找不到返回-1)，lastIndexOf(), includes(返回布尔类型)
+      //替换 replace()
+      //重复 repeat()
+      //字符串的转换 toString()
+      //监控密码长度
+      let ps = document.querySelector("[name='password']");
+      ps.addEventListener("keyup", function () {
+        this.value = this.value.trim();
+        let span = document.getElementsByTagName("span");
+        let error = "";
+        if (this.value.length < 5) {
+          error = "密码不能小于5位";
+        }
+        span[0].innerHTML = error;
+      });
+      //改变字符大小
+      let s = "beautiful";
+      for (let i = 0; i < s.length; i++) {
+        let span = document.createElement("span");
+        span.style.fontSize = (i + 1) * 10 + "px";
+        span.innerHTML = s[i];
+        document.body.append(span);
+      }
+      //replace
+      const keyword = ["html", "css"];
+      const string = "我喜欢html和css";
+      const replaceString = keyword.reduce((pre, word) => pre.replace(word, `<a href="#">${word}</a>`), string);
+      document.body.innerHTML += replaceString;
+      //repeat
+      function phonenum(number, len = 5) {
+        return String(number).slice(0, len * -1) + "*".repeat(len);
+      }
+      console.log(phonenum(13035178888, 4));
+
+      //字符串转数字
+      const ss = "99";
+      console.log(ss + 78);
+      console.log(ss * 1 + 78); //用*隐式转换成number
+      console.log(Number(ss) + 78); //用构造函数Number转换
+
+      //数字转字符串
+      const num = 99;
+      console.log(num + "" + 78);
+      console.log(String(num) + 78);
+      const s1 = "123abc";
+      console.log(parseInt(s1));
+
+      //字符串转数组
+      const a = "abc";
+      console.log(a.split(""));
+
+      //数组转字符串
+      const array = ["abc", "def"];
+      console.log(array.join(""));
+
+      //隐式转换成对象:一般是对象调用函数或者方法，但是字面量也能调用。
+      // let str = "abcd";
+      let str = new String("abcd"); //中间进行了隐式转换
+      console.log(typeof str); //object
+      console.log(str.valueOf());
+      // console.log(str.substr(2));
+    </script>
+
+    //
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>时间与日期</title>
+  </head>
+  <body>
+    <script>
+      const date = new Date();
+      console.log(date); //保存当前时间，这是对象类型
+
+      //获取时间戳
+      console.log(date * 1);
+      console.log(Number(date));
+      console.log(date.valueOf());
+      console.log(date.getTime());
+
+      //时间戳转字符串时间
+      console.log(new Date(date * 1));
+
+      const d = Date();
+      console.log(d); //保存当前时间，这是字符串类型
+      console.log(d * 1); //返回NaN
+
+      const da = Date.now();
+      console.log(da); //这个是时间戳，最后三位是毫秒
+
+      //计算时间差,打标签，也可以用上面的两个差
+      console.time("abc");
+      for (let i = 1; i < 10000; i++) {}
+      console.timeEnd("abc");
+
+      //可以用字符串或者数字来写日期
+      const dat = new Date("1990-9-22 3:22:22");
+      const date1 = new Date(1990, 8, 22, 3, 22, 22); //月份从0开始算
+      console.log(dat);
+      console.log(date1);
+
+      //数组
+      const param = [1990, 8, 22, 3, 22, 22];
+      const date2 = new Date(...param); //展开数组
+      console.log(date2);
+
+      //获取日期参数
+      console.log(date);
+      console.log(date.getFullYear());
+      console.log(date.getMonth() + 1);
+      console.log(date.getDate());
+      console.log(date.getHours());
+      console.log(date.getMinutes());
+      console.log(date.getSeconds());
+
+      //日期包装函数
+      function dateFormat(date, format = "YYYY-MM-DD HH:mm:ss") {
+        const config = {
+          YYYY: date.getFullYear(),
+          MM: date.getMonth() + 1,
+          DD: date.getDate(),
+          HH: date.getHours(),
+          mm: date.getMinutes(),
+          ss: date.getSeconds(),
+        };
+        for (const key in config) {
+          format = format.replace(key, config[key]);
+        }
+        return format;
+      }
+      console.log(dateFormat(date, "YYYY年MM月DD日"));
+
+      //一个优秀的时间库 moment.js
+    </script>
+  </body>
+</html>

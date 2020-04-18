@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标签模板+字面量模板实例</title>
+  </head>
+  <body>
+    <script>
+      let s = [
+        { title: "昨天我真高兴", author: "xm" },
+        { title: "今天我真高兴", author: "xh" },
+        { title: "明天我真高兴", author: "xl" },
+      ];
+      function template() {
+        return `<ul>${s.map((item) => links`<li>作者：${item.author}, 书名：${item.title}</li>`).join(" ")}</ul>`;
+      }
+      function links(strings, ...vars) {
+        // console.log(strings);
+        // console.log(vars);
+        return strings
+          .map((str, key) => {
+            return str + (vars[key] ? vars[key].replace("高兴", `<a href="#">高兴</a>`) : " ");
+          })
+          .join(" ");
+      }
+      document.body.innerHTML += template();
+    </script>
+  </body>
+</html>

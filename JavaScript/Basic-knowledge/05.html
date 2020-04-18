@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>布尔类型</title>
+  </head>
+  <body>
+    <script>
+      //一般可以不用构造函数进行声明
+      const boolean = false;
+      //   let num = 88;
+      //88==true？不等于。在比较的时候，都会转成数字。
+      let num = Boolean(88);
+      if (num) console.log(num);
+
+      //转换成布尔类型
+      const n = 1;
+      const str = "zbsk";
+      const a = {}; //空数组、空对象转布尔类型为真，因为为引用类型。
+      console.log(Boolean(a));
+
+      //数字或字符串转换成布尔类型，其它同理
+      let nn = 0;
+      nn = !!nn;
+      //   nn = Boolean(nn);用原生链上的函数转换
+      console.log(nn);
+    </script>
+  </body>
+</html>

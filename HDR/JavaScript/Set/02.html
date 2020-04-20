@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>WeakSet</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      ul li {
+        width: 200px;
+        height: 20px;
+        border: solid 1px green;
+        margin: 20px;
+        padding: 10px 20px;
+      }
+      ul li a {
+        margin-left: 100px;
+      }
+      .remove {
+        color: #999;
+        border: solid 1px #999;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        我是一个li<a href=""><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
+      </li>
+      <li>
+        我是一个li<a href=""><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
+      </li>
+      <li>
+        我是一个li<a href=""><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+  </body>
+  <script>
+    // let set1 = new WeakSet("abc"); //这边只能是引用类型
+    // let set2 = new WeakSet(["abc", "bcd"]); //这边也不对，因为会把他当成一个字符串
+    let set3 = new WeakSet();
+    set3.add(["abc", "bcd"]); //这个可以
+    console.log(set3);
+
+    //垃圾回收机制，就看引用次数
+
+    //一个实例
+    class Todo {
+      constructor() {
+        this.items = document.querySelectorAll("ul>li");
+        this.lists = new WeakSet(this.items);
+        // console.log(this.lists);
+      }
+      run() {
+        this.addEvent();
+      }
+      addEvent() {
+        this.items.forEach((item) => {
+          let a = item.querySelector("a");
+          console.log(a);
+          //这边有问题，以后再来改吧
+          a.addEventListener("click", (event) => {
+            const parentElement = event.target.parentElement;
+            console.log(parentElement);
+            if (this.lists.has(parentElement)) {
+              parentElement.classList.add("remove");
+              //   this.lists.delete(parentElement);
+            }
+          });
+        });
+      }
+    }
+    new Todo().run();
+  </script>
+</html>

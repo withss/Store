@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数组基础</title>
+  </head>
+  <body>
+    <div>happy</div>
+    <div>today</div>
+    <script>
+      //一般不用构造函数定义
+      const array = new Array("hsdf", 1, "sdfij");
+      console.log(array); //对象
+      console.log(array.join(" "));
+      //引用类型是传址操作
+
+      //用字面量定义
+      let a = [1, 2, 3, 4];
+      console.log(a); //还是对象
+      console.table(a);
+
+      //一般不嵌套数组，而是嵌套对象
+      let b = [
+        { name: "xh", grade: 86 },
+        { name: "xm", grade: 66 },
+      ];
+      console.log(b[0].name);
+      b[4] = { name: "xj", grade: 99 }; //自动扩展数组
+      console.log(b);
+
+      //创建误区
+      let c = new Array(6); //创建了长度为6的数组
+      console.table(c); //为空
+      let d = Array.of(6); //这个不是构造函数，不能加new.
+      console.log(d.length);
+
+      //查看类型
+      console.log(Array.isArray(d));
+
+      //数组转换成字符串
+      console.log(a.toString());
+      console.log(String(a));
+      console.log(a.join("-"));
+
+      //字符串转数组
+      let str = "abcd";
+      console.log(str.split(""));
+      console.log(Array.from(str));
+
+      //有length属性就能转
+      let obj = {
+        0: "xh",
+        1: 22,
+        length: 2, //去掉就不能转
+      };
+      console.log(Array.from(obj));
+
+      //一个实例
+      let divs = document.querySelectorAll("div");
+      console.log(divs);
+      console.log(
+        Array.from(divs, function (item) {
+          item.style.backgroundColor = "red";
+          console.log(item.innerHTML);
+          return item;
+        })
+      );
+    </script>
+  </body>
+</html>

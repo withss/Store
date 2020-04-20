@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数组查找和排序</title>
+  </head>
+  <body>
+    <script>
+      //indexOf(元素，查找起始点),lastIndexOf(),includes()返回布尔类型
+      //find()返回值，findIndex()返回索引
+      let arr = [1, 2, 3, 4, 5];
+      let r = arr.find(function (item) {
+        return item == 2;
+      });
+      console.log(r);
+
+      //find原型
+      function findValue(array, callback) {
+        for (const value of array) {
+          if (callback(value)) return value;
+        }
+        return undefined;
+      }
+      console.log(
+        findValue(arr, function (item) {
+          return item == 2;
+        })
+      );
+
+      //排序
+      let array = [1, 6, 7, 2, 9, 5];
+      array = array.sort(function (a, b) {
+        //-1 从小到大 1 从大到小
+        return a - b;
+      });
+      console.log(array);
+
+      //实例
+      let cart = [
+        { name: "xh", age: 18 },
+        { name: "xm", age: 15 },
+        { name: "xj", age: 32 },
+      ];
+      cart = cart.sort(function (a, b) {
+        return a.age - b.age;
+      });
+      console.table(cart);
+
+      //sort的实现
+      let array1 = [1, 6, 7, 2, 9, 5];
+      function sort(array, callback) {
+        for (const n in array) {
+          for (const m in array) {
+            if (callback(array[n], array[m]) < 0) {
+              const temp = array[n];
+              array[n] = array[m];
+              array[m] = temp;
+            }
+          }
+        }
+        return array;
+      }
+      console.log(
+        sort(array1, function (a, b) {
+          return a - b;
+        })
+      );
+      //负数也是true
+      console.log(Boolean(-1));
+    </script>
+  </body>
+</html>

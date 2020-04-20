@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>map函数+reduce</title>
+  </head>
+  <body>
+    <script>
+      //number类型  不会改变原数组的值
+      let arr = [1, 2, 3, 4, 5];
+      const newArray = arr.map(function (value) {
+        return value + 1;
+      });
+      console.table(arr);
+
+      console.table(newArray);
+
+      //Object类型  会改变原数组的值
+      let users = [
+        { name: "xh", age: 22 },
+        { name: "xm", age: 18 },
+        { name: "xj", age: 25 },
+      ];
+      //深拷贝
+      /* let newUsers = users.map(function (value) {
+        return (value.class = "三年二班");
+      });
+      console.table(users);
+      console.table(newUsers); */
+
+      //浅拷贝
+      let nu = users.map(function (value) {
+        // return Object.assign({ class: "三年二班" }, value); //顺序不能颠倒？
+        return {
+          name: value.name,
+          age: value.age,
+          class: "三年二班",
+        };
+      });
+      console.table(users);
+      console.table(nu);
+
+      //item 和value的区别是什么呢？
+
+      //reduce()
+      let arr2 = [1, 2, 3, 1, 2, 4, 5, 5, 6, 5];
+      function arrayCount(array, item) {
+        return array.reduce(function (total, cur) {
+          total += item == cur ? 1 : 0;
+          return total;
+        }, 0);
+      }
+      console.log(arrayCount(arr2, 6));
+
+      //利用reducu()找最大值
+      function arrayMax(array) {
+        return array.reduce(function (pre, cur) {
+          return pre > cur ? pre : cur;
+        });
+      }
+      console.log(arrayMax(arr2));
+
+      //利用reduce()找年龄超过20岁的同学
+      function getNameByAge(array, age) {
+        return array.reduce(function (arr, cur) {
+          if (cur.age > age) arr.push(cur.name);
+          return arr;
+        }, []);
+      }
+      console.table(getNameByAge(users, 20));
+
+      //去除重复的商品
+      let cart = [
+        { name: "apple", price: 8 },
+        { name: "banana", price: 10 },
+        { name: "pear", price: 5 },
+        { name: "apple", price: 8 },
+        { name: "banana", price: 10 },
+      ];
+      function filterGoods(goods) {
+        return goods.reduce(function (arr, cur) {
+          if (
+            !arr.some(function (value) {
+              return value.name == cur.name;
+            })
+          ) {
+            arr.push(cur);
+          }
+          return arr;
+        }, []);
+      }
+      console.table(filterGoods(cart));
+    </script>
+  </body>
+</html>

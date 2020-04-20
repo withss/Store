@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>every+some+filter</title>
+  </head>
+  <body>
+    <input type="text" name="title" />
+    <span></span>
+    <script>
+      //every 每一个都为真的时候，才是真。
+      let arr = ["abc", "efg"];
+      let status = arr.every(function (value, index, arr) {
+        console.log(arr);
+        return true;
+      });
+
+      //实例
+      const user = [
+        { name: "xh", age: 18 },
+        { name: "xm", age: 20 },
+        { name: "xj", age: 22 },
+      ];
+      const res = user.every(function (item) {
+        return item.age >= 20;
+      });
+      console.log(res ? "1" : "2");
+
+      //some  有任何一个为真，就为真
+      let keywords = ["abc", "def"];
+      let title = document.querySelector('[name="title"]');
+      title.addEventListener("keyup", function () {
+        const res = keywords.some((keyword) => {
+          return this.value.indexOf(keyword) != -1;
+        });
+        res ? (document.querySelector("span").innerHTML = "") : (document.querySelector("span").innerHTML = "必须包含" + keywords.join(",") + "关键词");
+      });
+
+      //过滤函数filter()
+      let lessons = [
+        { title: "弹性盒模型", category: "css" },
+        { title: "栅格", category: "css" },
+        { title: "函数", category: "js" },
+      ];
+      const cssLessons = lessons.filter(function (lesson) {
+        return lesson["category"] == "css";
+      });
+      console.table(cssLessons);
+
+      //实现filter( )
+      let array = [1, 2, 3, 4, 5, 6, 7];
+      function filter(array, callback) {
+        let resArray = [];
+        for (const value of array) {
+          if (callback(value)) {
+            resArray.push(value);
+          }
+        }
+        return resArray;
+      }
+      console.log(
+        filter(array, function (value) {
+          return value > 3;
+        })
+      );
+    </script>
+  </body>
+</html>

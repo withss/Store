@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>循环操作+迭代器</title>
+  </head>
+  <body>
+    <script>
+      //for循环，for value of ,for key in
+      /* forEach(function (item, index, 原函数) {
+        这个函数可以直接操作DOM节点;
+      }); */
+
+      //迭代器???
+      let arr = ["abc", "efg"];
+      let values = arr.values(); //keys()表示索引
+      console.log(values.next());
+
+      //这边的value和done不用定义吗？
+      while (({ value, done } = values.next()) && done === false) {
+        console.log(value);
+      }
+      //entries
+      /*  let entries = arr.entries();
+      let {
+        done,
+        value: [a, b],
+      } = entries.next();
+      console.log(a, b); */
+    </script>
+  </body>
+</html>

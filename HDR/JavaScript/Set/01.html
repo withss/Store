@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>set类型</title>
+  </head>
+  <body>
+    <input type="text" name="abc" />
+    <ul></ul>
+    <script>
+      //声明
+      let set = new Set([1, 2, 3, 4, 5]);
+      set.add(1);
+      set.add(1); //得不到这个值，会覆盖上一个
+      console.log(set);
+
+      let set1 = new Set("abcdef");
+      console.log(set1); //这里会展开
+
+      let set2 = new Set(["abc", "efg"]);
+      console.log(set2);
+      console.log(set2.size); //2个元素
+      console.log(set2.has("abc")); //判断是否存在
+      console.log(set2.delete("abc")); //返回是否删除
+      console.log(set2.values()); //返回值
+      console.log(set2.clear()); //清空
+
+      //转成数组 contentArray.from()，点语法
+      //借助数组，筛选数字
+      let set3 = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+      let af = new Set([...set3].filter((item) => item < 5));
+      console.log(af);
+
+      //数组借助set，去除重复值
+      let arr = [1, 2, 3, 4, 5, 2, 3, 4];
+      arr = [...new Set(arr)];
+      console.log(arr);
+
+      //遍历
+      let set4 = new Set(["ab", "cd"]);
+      set4.forEach(function (value, key, set) {
+        console.log(value, key, set); //value和key是一样的
+      });
+
+      //也可以用for of
+      //一个实例：网站关键字
+      let obj = {
+        data: new Set(),
+        keyword(word) {
+          this.data.add(word);
+        },
+        show() {
+          let ul = document.querySelector("ul");
+          ul.innerHTML = ""; //每次都把之前的值去掉，重新加载
+          this.data.forEach(function (value) {
+            ul.innerHTML += `<li>${value}</li>`;
+          });
+        },
+      };
+      let input = document.querySelector("[name='abc']");
+      input.addEventListener("blur", function () {
+        obj.keyword(this.value);
+        obj.show();
+      });
+
+      //交集，并集和差集
+      let a = new Set([1, 2, 5, 7, 8]);
+      let b = new Set([1, 3, 5, 7, 9]);
+
+      //并集
+      console.log(new Set([...a, ...b]));
+
+      //交集和差集
+      console.log(
+        new Set(
+          [...a].filter(function (value) {
+            return [...b].includes(value); //前面加一个感叹号就是差集
+            // return b.has(value);
+          })
+        )
+      );
+    </script>
+  </body>
+</html>

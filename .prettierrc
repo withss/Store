@@ -1,6 +1,5 @@
 {
   "eslintIntegration": true,
-  "stylelintIntegration": true,
   "printWidth": 2000,
   "tabWidth": 2
 }

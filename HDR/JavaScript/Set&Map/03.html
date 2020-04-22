@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map</title>
+  </head>
+  <body></body>
+  <script>
+    //对象中的键名只能是字符串，而map中什么都可以
+    let map = new Map();
+    map.set("name", "xh");
+    map.set(function () {}, "xm");
+    map.set({}, "xj");
+    map.set(1, "xy");
+    console.log(map);
+
+    //键值对的形式
+    let map1 = new Map([
+      ["xh", 22],
+      ["xm", "abc"],
+    ]);
+    console.log(map1);
+
+    //链式操作的意思是可以一直追加操作函数或着方法
+    map1.set("xj", 18).set("xy", "efg");
+    console.log(map1);
+
+    //get,has,delete,clear
+    let obj = {
+      name: "xiaohong",
+    };
+    let map2 = new Map();
+    map2.set(obj, "css");
+    console.log(map2.get(obj));
+    console.log(map2.delete(obj));
+    map2.clear();
+    console.log(map.has(obj));
+
+    //keys(),values(),entries()键值对
+    let map3 = new Map([
+      ["xh", 22],
+      ["xm", "abc"],
+    ]);
+
+    //for of,forEach（遍历）
+    for (const [key, value] of map3.entries()) {
+      console.log(key, value);
+    }
+    map3.forEach((value, key) => {
+      console.log(value, key);
+    });
+
+    //类型转换
+    console.log(...map3);
+    console.log([...map3]);
+    console.log([...map3.entries()]); //和上一条一样
+    console.log([...map3.values()]);
+    //循环键值对
+    for (const iterator of map3) {
+      console.log(iterator);
+    }
+    //筛选
+    let map4 = new Map([
+      ["xh", 22],
+      ["xm", "abc"],
+      ["xj", "abc"],
+    ]);
+    //这边关于一些格式，还是要先理清楚
+    let newArr = [...map4].filter(([key, value]) => {
+      console.log(value);
+      return value == "abc";
+    });
+    let map5 = new Map(newArr);
+    console.log(map5);
+  </script>
+</html>

@@ -69,7 +69,7 @@
         this.items.forEach((item) => {
           let a = item.querySelector("a");
           console.log(a);
-          //这边有问题，以后再来改吧
+          //TODO:这边有问题，以后再来改吧
           a.addEventListener("click", (event) => {
             const parentElement = event.target.parentElement;
             console.log(parentElement);

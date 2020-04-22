@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Map</title>
   </head>
-  <body></body>
+  <body>
+    <div name="xh">xiaohong</div>
+    <div name="xm">xiaoming</div>
+    <br />
+    <br />
+    <form action="" onsubmit="return post()">
+      接受协议：
+      <input type="checkbox" name="agreement" error="请接受协议" />
+      我是学生：
+      <input type="checkbox" name="student" error="网站只对学生开放" />
+      <br />
+      <input type="submit" />
+    </form>
+  </body>
   <script>
     //对象中的键名只能是字符串，而map中什么都可以
     let map = new Map();
@@ -32,7 +45,7 @@
     };
     let map2 = new Map();
     map2.set(obj, "css");
-    console.log(map2.get(obj));
+    console.log(map2);
     console.log(map2.delete(obj));
     map2.clear();
     console.log(map.has(obj));
@@ -73,5 +86,37 @@
     });
     let map5 = new Map(newArr);
     console.log(map5);
+
+    //一个实例
+    let map6 = new Map();
+    document.querySelectorAll("div").forEach((item) => {
+      map6.set(item, {
+        content: item.getAttribute("name"),
+      });
+    });
+    console.log(map6);
+
+    map6.forEach((config, elem) => {
+      elem.addEventListener("click", () => {
+        alert(config.content);
+      });
+    });
+
+    //用map类型控制网站表单提交
+    // TODO:这边还有一些问题，等学了函数再过来看
+    function post() {
+      let map7 = new Map();
+      let inputs = document.querySelectorAll("[error]");
+      inputs.forEach((item) => {
+        map.set(item, {
+          error: item.getAttribute("error"),
+          status: item.cheked,
+        });
+      });
+      return [...map].every(([elem, config]) => {
+        config.status || alert(config.error);
+        return config.status;
+      });
+    }
   </script>
 </html>

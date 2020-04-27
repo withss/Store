@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数</title>
+  </head>
+  <body></body>
+  <script>
+    //函数也是对象  参数+函数体
+    let func = new Function("title", "console.log(title)");
+    func("abc"); //调用函数
+
+    //一般用字面量定义
+    let user = {
+      name: null,
+      setUsername: function (name) {
+        this.name = name;
+      },
+      //简写形式
+      getUsername() {
+        return this.name;
+      },
+    };
+    user.setUsername("bcd");
+    console.log(user.getUsername());
+
+    //全局函数会默认压入window中，所以最好用模块和类的方式
+    //举例，把匿名函数（经常用到的）赋值给变量
+    var f = function () {
+      console.log("abc");
+    };
+    window.f(); //let和const不会压入window,var会
+
+    //声明式函数提升，类似于变量声明提升
+
+    //立即执行函数
+    (function () {
+      console.log("123");
+    })();
+
+    //立即执行函数解决块作用域冲突问题（了解知识点）
+    (function (window) {
+      function a() {
+        console.log("a1");
+      }
+      function b() {
+        console.log("b1");
+      }
+      window.js1 = { a, b }; //向外的接口？？
+    })(window);
+    {
+      let a = function () {
+        console.log("a2");
+      };
+      let b = function () {
+        console.log("b2");
+      };
+      window.js2 = { a, b };
+    } //两种写法
+    js2.b();
+
+    //形参和实参，默认参数直接赋值（写在后面）
+    //函数参数是函数名直接作为参数
+    //arguments是包含所有参数的对象，但是可以用数组的方式访问元素
+    //点语法可以得到参数数组
+    function sum(...args) {
+      console.log(args.pop());
+
+      console.log(args.length);
+    }
+    sum(1, 2, 3, 4, 5);
+
+    //箭头函数 （参数）+箭头+函数体
+    let f1 = () => {
+      console.log(3);
+    };
+    f1();
+    //过滤函数
+    let arr = [1, 2, 3, 4, 5, 6].filter((value) => value <= 3);
+    console.log(arr);
+    //求和函数
+    let s = [1, 2, 3, 4, 5, 6].reduce((pre, cur) => pre + cur);
+    console.log(s);
+
+    //递归实现画星(注意||的使用)
+    function stars(num) {
+      //   console.log(Boolean(document.write("*".repeat(num) + "<br/>")));
+
+      return num == 0 ? 0 : document.write("*".repeat(num) + "<br/>") || stars(--num);
+    }
+    stars(8);
+
+    //回调函数是在函数中调用函数
+  </script>
+</html>

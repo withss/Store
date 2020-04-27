@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>this</title>
+  </head>
+  <body>
+    <button>xiaohong</button>
+  </body>
+  <script>
+    //this只有在函数调用时才确定下来，调用的环境决定
+    //普通函数中的this指window
+    //map函数的第二个参数是函数体内的this
+    let user = {
+      name: "xh",
+      lessons: ["html", "css", "js"],
+      show() {
+        return this.lessons.map((value) => `${this.name}:${value}`, this); //这里第二个参数可以省略
+      },
+    };
+    console.log(user.show());
+
+    //实例
+    //要多去考虑调用时左侧的引用对象，要不是父级this，要不是全局this。
+    let dom = {
+      name: "xh",
+      bind: function () {
+        const button = document.querySelector("button");
+        // console.log(button);
+        // console.log(this);
+        button.addEventListener("click", function (event) {
+          console.log(this);
+        });
+
+        // button.addEventListener("click", (event) => {
+        //   console.log(this); //箭头函数会把this提升一层
+        // });
+        // button.addEventListener("click", (event) => {
+        //   console.log(this.name + ":" + event.target.innerHTML);
+        // });
+      },
+    };
+    dom.bind();
+  </script>
+</html>

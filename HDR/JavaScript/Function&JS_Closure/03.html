@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>call+apply+bind</title>
+  </head>
+  <body>
+    <button>abc</button>
+    <button>def</button>
+    <div>is handsome</div>
+  </body>
+  <script>
+    //this的构造原理
+    function User(name) {
+      this.name = name;
+    }
+    let xh = new User("xh");
+    let xm = { age: 18 };
+    User.call(xm, "xm");
+    console.log(xm);
+
+    //call和apply的区别
+    let xj = {
+      name: "xj",
+    };
+    let xy = {
+      name: "xy",
+    };
+    function User(age, sex) {
+      console.log(this.name + sex + age);
+    }
+    User.call(xj, 22, "男"); //立即执行,第一个参数指定地址
+    User.apply(xy, [12, "女"]); //立即执行，第二个参数为数组
+
+    //实例
+    function show() {
+      alert(this.innerHTML);
+    }
+    let buttons = document.querySelectorAll("button");
+    [...buttons].map((value, index) => {
+      buttons[index].addEventListener("click", (event) => {
+        show.apply(event.target);
+      });
+    });
+
+    //bind不是立即执行，生成一个新的函数。
+    let a = function () {};
+    let b = a;
+    console.log(a === b);
+    b = a.bind();
+    console.log(a === b);
+
+    //实例
+    document.querySelector("div").addEventListener(
+      "click",
+      function (event) {
+        document.write(this.name + " " + event.target.innerHTML);
+      }.bind({ name: "xiaoming" })
+    );
+
+    //实例
+    function Color(elem) {
+      this.elem = elem;
+      this.colors = ["#0984e3", "#ff7675", "#00b894", "#fdcb6e", "#fd79a8"];
+      this.run = function () {
+        setInterval(
+          function () {
+            let i = Math.floor(Math.random() * this.colors.length);
+            this.elem.style.backgroundColor = this.colors[i];
+          }.bind(this),
+          1000
+        );
+      };
+    }
+    let obj = new Color(document.body);
+    console.log(obj);
+
+    obj.run();
+
+    //
+    let box = {};
+    box.onclick = function () {
+      console.log(this);
+
+      function fn() {
+        console.log(this);
+      }
+      fn();
+    };
+    box.onclick();
+  </script>
+</html>

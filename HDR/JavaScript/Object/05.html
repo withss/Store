@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>使用apply和call借用原型链</title>
+  </head>
+  <body>
+    <button class="red">1</button><button>2</button>
+  </body>
+  <script>
+    let a = {
+      data: [1, 2, 3, 5, 18, 6, 9],
+    };
+    Object.setPrototypeOf(a, {
+      max() {
+        return this.data.sort((a, b) => b - a)[0];
+      },
+    });
+    console.log(a.max());
+
+    //如何借用？
+    let b = {
+      lesson: {
+        html: 88,
+        css: 90,
+        js: 100,
+      },
+      //getter
+      get data() {
+        return Object.values(this.lesson);
+      },
+    };
+    console.log(a.max.apply(b));
+
+    //也可以只用第二个参数
+    let c = {
+      data: [1, 2, 3, 5, 22, 6, 9],
+    };
+    Object.setPrototypeOf(c, {
+      max(data) {
+        return data.sort((a, b) => b - a)[0];
+      },
+    });
+    console.log(c.max(c.data));
+
+    //如何借用？
+    let d = {
+      lesson: {
+        html: 88,
+        css: 90,
+        js: 99,
+      },
+    };
+    console.log(Object.values(d.lesson)); //返回的是类数组，并不是数组，可以遍历但不具有数组的功能
+
+    console.log(c.max.apply(null, [Object.values(d.lesson)])); //这边为什么要用中括号包起来
+
+    //借用Math方法,直接优化了寻找最大值
+    console.log(Math.max.apply(null, Object.values(d.lesson)));
+
+    //借用方法的实例
+    let btns = document.querySelectorAll("button");
+    btns = Array.prototype.filter.call(btns, (item) => {
+      return item.hasAttribute("class");
+    });
+    console.log(btns);
+  </script>
+</html>

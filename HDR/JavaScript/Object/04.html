@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>属性检测差异</title>
+  </head>
+  <body></body>
+  <script>
+    let a = { name: "a" };
+    let b = {
+      show: function () {
+        console.log("show");
+      },
+    };
+    Object.prototype.age = 18; //添加到父级
+    console.log("age" in a); //true
+
+    //hasOwnProperty不遍历原型链，但是in遍历原型链
+    Object.setPrototypeOf(a, b);
+    console.log("show" in a);
+    console.log(a.hasOwnProperty("name")); //true
+    console.log(a.hasOwnProperty("show")); //false
+  </script>
+</html>

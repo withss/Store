@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>原型基础知识</title>
+  </head>
+  <body></body>
+  <script>
+    //对象的默认父级是Object.prototype
+    let b = {};
+    console.dir(b.__proto__);
+
+    //函数既是对象，还可以是构造函数，所以有两个父亲
+    function User() {
+      console.log("abc");
+    }
+    console.dir(User);
+
+    //利用构造函数产生的对象父级和User共享prototype父级
+    let c = new User();
+    console.log(User.prototype == c.__proto__); //true
+
+    //构造函数有 Sring Number Boolean Object
+    let d = new Object();
+    d.__proto__.view = function () {
+      console.log("bcd");
+    };
+    User.prototype.view(); //定位到了同一个父级
+
+    //父级的尽头是Object.prototype
+    console.dir(User);
+    console.log(User.__proto__.__proto__ == Object.prototype); //true
+    console.log(User.prototype.__proto__ == Object.prototype); //true
+    console.dir(Object.prototype.__proto__); //null
+
+    //任何对象都是构造函数创建的
+    let f = {}; // new Object()
+    console.log(f.__proto__ == Object.prototype); //ture
+    let arr = []; // new Array()
+    console.log(arr.__proto__ == Array.prototype); //ture
+
+    //设置父级
+    //利用Object.create(父级，属性和方法设置),没有父级,完全数据字典对象
+    let obj = Object.create(null, {
+      name: {
+        value: "abc",
+      },
+    });
+    console.log(obj);
+    // console.log(obj.hasOwnProproperty("name"));
+
+    //利用Object.setPrototypeOf(对象，父级)
+    //查看Object.getPrototypeOf(对象)
+    let g = { name: "abc" };
+    let parent = { name: "efg" };
+    Object.setPrototypeOf(g, parent);
+    console.dir(g);
+  </script>
+</html>

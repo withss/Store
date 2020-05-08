@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>继承</title>
+  </head>
+  <body></body>
+  <script>
+    //原型的继承，不是改变构造函数的原型
+    //将构造函数的原型的父级指向其它对象的原型，要保留构造函数的原型
+    //a.prototype.__proto__=User.prototype
+    //也可以用a.prototype=Object.create(User.prototype)进行设置
+
+    //继承的区别
+    //1、上面第二种方法新建了一个a.prototype，但是以前的实例化的对象还是会指向以前的那个a.prototype。
+    //2、第二种方法会把constructor丢了。
+    //3、即使加上constructor，还存在一个问题是这个属性可遍历。
+
+    //例子1
+    function show() {}
+    show.name = function () {
+      console.log(this.name);
+    };
+    function A(name) {
+      this.name = name;
+    }
+    let a = new A("a");
+    console.dir(a);
+
+    A.prototype = Object.create(show.prototype);
+    // console.dir(A);
+
+    //丢失了丢失了原型，constructor
+    let b = new A("b");
+    console.dir(b);
+
+    //例子2
+    function B(name) {
+      this.name = name;
+    }
+    let c = new B("c");
+    B.prototype.__proto__ = show.prototype;
+    B.prototype.age = 10;
+    //没有丢失原型，也没有丢失constructor
+    console.dir(c);
+    console.log(c.age);
+
+    //例子3--对constructor的影响
+    function C(name) {
+      this.name = name;
+    }
+    C.prototype = Object.create(show.prototype);
+    C.prototype.constructor = C;
+    let d = new C("d");
+    //手动添加constructor
+    console.dir(d.constructor);
+    // console.dir(C.prototype);
+    //这里的constructor是可枚举型
+    console.log(Object.getOwnPropertyDescriptors(C.prototype));
+
+    for (const key in d) {
+      console.log(key);
+    }
+
+    //修正：设置上特征
+    Object.defineProperty(C.prototype, "constructor", {
+      value: C,
+      enumerable: false,
+    });
+  </script>
+</html>

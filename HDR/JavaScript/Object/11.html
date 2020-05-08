@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>没有多继承+mixin+super</title>
+  </head>
+  <body></body>
+  <script>
+    //解决办法，往原型里面压对象
+    //使用混入mixin
+
+    //原型工厂
+    function extend(sub, sup) {
+      sub.prototype = Object.create(sup.prototype);
+      Object.defineProperty(sub.prototype, "constructor", {
+        value: sub,
+        enumerable: false,
+      });
+    }
+    function User(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    User.prototype.show = function () {
+      console.log(this.name, this.age);
+    };
+
+    function A(...args) {
+      User.apply(this, args);
+    }
+    extend(A, User);
+    let xh = new A("xiaohong", 18);
+    xh.show();
+
+    //其它功能设置成对象
+    const B = {
+      view() {
+        // console.log("B");
+        return "B";
+      },
+    };
+
+    const C = {
+      __proto__: B,
+      display() {
+        //super=this.__proto__
+        //根绝这边写this不太合适吧
+        return super.view() + "C";
+      },
+    };
+
+    A.prototype = Object.assign(A.prototype, B, C);
+    console.log(xh.view());
+    console.log(xh.display());
+  </script>
+</html>

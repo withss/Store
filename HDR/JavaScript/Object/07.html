@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定义原型，设置原型</title>
+  </head>
+  <body></body>
+  <script>
+    //利用Object.create()定义原型
+    let User = {
+      show() {
+        console.log(this.name);
+      },
+    };
+
+    let a = Object.create(User, {
+      name: {
+        value: "abc",
+      },
+    });
+    console.dir(User);
+    a.show();
+
+    //利用__proto__设置原型
+    let b = { name: "bcd" };
+    b.__proto__ = User;
+    b.show();
+
+    //用setPrototype代替__proto__
+    let c = { name: "cde" };
+    Object.setPrototypeOf(c, User);
+    c.show();
+
+    //__proto__里面的getter和setter，只能设置为对象
+    let d = {
+      action: {},
+      get proto() {
+        return this.action;
+      },
+      set proto(obj) {
+        if (obj instanceof Object) {
+          this.action = obj;
+        }
+      },
+    };
+    d.proto = { name: "def" };
+    console.log(d.proto);
+
+    //如果非要设置，只能去掉父级
+    d = Object.create(null);
+    d.proto = "p";
+    console.log(d.proto);
+  </script>
+</html>

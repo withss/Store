@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>给我一个对象我还你一个全世界</title>
+  </head>
+  <body></body>
+  <script>
+    //利用constructor可以找到构造对象
+    function User(name) {
+      this.name = name;
+    }
+    let obj = new User("object");
+    console.dir(obj.constructor);
+
+    //因此，只要有一个对象，就可以找到构造函数，再创造无数个对象
+    function createByObject(obj, ...args) {
+      const constructor = Object.getPrototypeOf(obj).constructor;
+      return new constructor(...args);
+    }
+    let a = createByObject(obj, "abc");
+    console.dir(a);
+  </script>
+</html>

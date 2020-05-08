@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>原型工厂+对象工厂</title>
+  </head>
+  <body></body>
+  <script>
+    //原型工厂
+    function extend(sub, sup) {
+      sub.prototype = Object.create(sup.prototype);
+      Object.defineProperty(sub.prototype, "constructor", {
+        value: sub,
+        enumerable: false,
+      });
+    }
+    function User(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    User.prototype.show = function () {
+      console.log(this.name, this.age);
+    };
+
+    function A(...args) {
+      User.apply(this, args);
+    }
+    extend(A, User);
+    let xh = new A("xiaohong", 18);
+    xh.show();
+
+    //对象工厂
+    function B(name, age) {
+      const instance = Object.create(User.prototype);
+      User.call(instance, name, age);
+      instance.role = function () {
+        console.log("role");
+      };
+      return instance;
+    }
+    let xm = B("xiaoming", 22);
+    xm.show();
+    xm.role();
+  </script>
+</html>

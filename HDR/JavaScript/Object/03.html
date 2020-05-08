@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>原型检测</title>
+  </head>
+  <body></body>
+  <script>
+    //a instanceof A
+    //构造函数A的prototype是否在a的原型链上
+
+    //b.isPrototypeOf(a)
+    //b对象是否在a对象的原型链上
+    let a = {};
+    let b = {};
+    Object.setPrototypeOf(a, b);
+    console.log(b.isPrototypeOf(a));
+  </script>
+</html>

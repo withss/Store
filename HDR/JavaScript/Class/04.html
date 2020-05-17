@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>访问器</title>
+  </head>
+  <body></body>
+  <script>
+    //setter getter
+    class Request {
+      constructor(host) {
+        this.data = {};
+        this.host = host;
+      }
+      set host(url) {
+        if (!/^https?:\/\//i.test(url)) {
+          throw new Error("地址错误");
+        }
+        this.data.host = url;
+      }
+      get host() {
+        return this.data.host;
+      }
+    }
+    let a = new Request("http://www.baidu.com");
+    a.host = "http://baidu.com";
+    console.log(a.host);
+  </script>
+</html>

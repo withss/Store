@@ -1,0 +1,37 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 30px;
+  .s1 {
+    width: 260px;
+    overflow: hidden;
+    border-radius: 10px;
+    dt {
+      height: 30px;
+      background-color: darkgray;
+      display: flex;
+      line-height: 30px;
+      padding-left: 10px;
+      cursor: pointer;
+      &:first-of-type {
+        // border-top-left-radius: 10px;
+        // border-top-right-radius: 10px;
+      }
+    }
+    dd {
+      height: 100px;
+      background-color: lightgray;
+      overflow: hidden;
+      &:last-of-type {
+        // border-bottom-left-radius: 10px;
+        // border-bottom-right-radius: 10px;
+      }
+      div {
+        padding: 10px;
+      }
+    }
+  }
+}

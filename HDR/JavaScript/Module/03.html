@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>预解析的必要性+动态加载</title>
+  </head>
+  <body>
+    <button>加载</button>
+    <script type="module">
+      //无论导出多少次，只解析一次
+      //静态加载
+      import { show } from "./02.js"; //这边不会有输出，因为show之前导出过
+
+      //动态加载
+      /* import("./03.js").then((module) => {
+        console.dir(module);
+      }); */
+
+      document.querySelector("button").addEventListener("click", () => {
+        import("./03.js").then(({ t, show }) => {
+          console.log(t, show);
+        });
+      });
+    </script>
+  </body>
+</html>

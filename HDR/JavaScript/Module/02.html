@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模块的使用+模块延迟解析+作用域体现</title>
+  </head>
+  <body>
+    <script type="module">
+      import { title, show } from "./02.js";
+      console.log(title);
+      show();
+      let xh = "xiaohong";
+      //模块之间可能有依赖关系，所以要在一开始全部解析
+      //模块后解析
+      //模块默认运行在严格模式
+      console.log(this); //undefined
+    </script>
+    <script>
+      //模块是单独的作用域，不能直接访问
+      //   console.log(xh);
+    </script>
+    <script>
+      console.log("我在模块之后的作用域，但是先解析");
+    </script>
+  </body>
+  //这边要写type
+</html>

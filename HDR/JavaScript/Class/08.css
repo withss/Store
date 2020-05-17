@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 30px;
+}
+body .s1 {
+  width: 260px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+body .s1 dt {
+  height: 30px;
+  background-color: darkgray;
+  display: flex;
+  line-height: 30px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+body .s1 dd {
+  height: 100px;
+  background-color: lightgray;
+  overflow: hidden;
+}
+body .s1 dd div {
+  padding: 10px;
+}

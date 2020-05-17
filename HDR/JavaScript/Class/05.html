@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>保护属性</title>
+  </head>
+  <body></body>
+  <script>
+    //1、使用下划线保护属性,人为规定带下划线的不要改
+
+    /* class User1 {
+      _url = "htttp://baidu.com";
+      constructor(name) {
+        this.name = name;
+      }
+      set url(url) {
+        if (!/^https?:\/\//i.test(url)) {
+          throw new Error("地址错误");
+        }
+        this._url = url;
+      }
+      get url() {
+        return this._url;
+      }
+    }
+
+    let a = new User1("a");
+    a.url = "http://dj";
+    console.log(a.url); */
+
+    //2、利用symbol定义保护属性
+    /* const protects = Symbol();
+
+    class common {
+      constructor() {
+        this[protects] = {};
+        this[protects].host = "http://www.baidu.com";
+      }
+      set host(url) {
+        if (!/^https?:\/\//i.test(url)) {
+          throw new Error("地址错误");
+        }
+        this[protects].host = url;
+      }
+      get host() {
+        return this[protects].host;
+      }
+    }
+    class User extends common {
+      //public
+      constructor(name) {
+        super(); //调用父类
+        this.name = name;
+      }
+    }
+    let a = new User("a");
+    console.log(a); */
+
+    //3、使用weakmap来保护属性
+    const protects = new WeakMap();
+    class common {
+      constructor() {
+        protects.set(this, {
+          host: "http://www.baidu.com",
+        });
+      }
+      set host(url) {
+        if (!/^https?:\/\//i.test(url)) {
+          throw new Error("地址错误");
+        }
+        protects.set(this, { ...protects.get(this), url });
+      }
+      get host() {
+        return protects.get(this)["host"];
+      }
+    }
+    class User extends common {
+      constructor(name) {
+        super();
+        this.name = name;
+      }
+    }
+    let a = new User("a");
+    console.log(a);
+    console.log(a.host);
+
+    //私有属性
+    //#host,或者#check=()=>{}
+    //分清楚公有属性，保护属性和私有属性
+  </script>
+</html>

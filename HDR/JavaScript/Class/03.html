@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>课程管理实例</title>
+  </head>
+  <body></body>
+  <script>
+    const data = [
+      { name: "html", price: 100 },
+      { name: "css", price: 80 },
+      { name: "js", price: 200 },
+    ];
+    class Lesson {
+      constructor(data) {
+        this.model = data;
+      }
+      get price() {
+        return this.model.price;
+      }
+      get name() {
+        return this.model.name;
+      }
+      static createBath(data) {
+        return data.map((item) => new Lesson(item));
+      }
+      static maxPrice(data) {
+        return data.sort((a, b) => {
+          return b.price - a.price;
+        })[0];
+      }
+      static totalPrice() {
+        return data.reduce((pre, cur) => {
+          return pre + cur.price;
+        }, 0);
+      }
+    }
+    //得到三个对象
+    let l = Lesson.createBath(data);
+    console.log(l);
+
+    //得到最贵的课程
+    console.log(Lesson.maxPrice(l).name + ":" + Lesson.maxPrice(l).price);
+
+    //统计价格
+    console.log(Lesson.totalPrice(l));
+  </script>
+</html>

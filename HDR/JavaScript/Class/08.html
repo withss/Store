@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="08.css" />
+    <title>自己理解的实例</title>
+  </head>
+  <body>
+    <dl class="s1">
+      <dt>昨天</dt>
+      <dd><div>努力</div></dd>
+      <dt>今天</dt>
+      <dd><div>开心</div></dd>
+      <dt>明天</dt>
+      <dd><div>努力</div></dd>
+    </dl>
+  </body>
+  <script>
+    class Animation {
+      constructor(el) {
+        this.el = el;
+        this.isshow = true;
+        this.defaultHeight = this.height;
+      }
+      hide(callback) {
+        this.isshow = false;
+        let id = setInterval(() => {
+          if (this.height <= 0) {
+            clearInterval(id);
+            callback && callback();
+          }
+          this.height = this.height - 1;
+        }, 10);
+      }
+      show(callback) {
+        this.isshow = true;
+        let id = setInterval(() => {
+          if (this.height > this.defaultHeight) {
+            clearInterval(id);
+            callback && callback();
+          }
+          this.height = this.height + 1;
+        }, 10);
+      }
+      set height(height) {
+        this.el.style.height = height + "px";
+      }
+
+      get height() {
+        return window.getComputedStyle(this.el).height.slice(0, -2) * 1;
+      }
+    }
+    class Slide {
+      constructor(el) {
+        this.el = document.querySelector(el);
+        this.links = this.el.querySelectorAll("dt");
+        this.panels = [...this.el.querySelectorAll("dd")].map((item) => new Panel(item));
+        console.dir(this.panels);
+        this.bind(); //绑定事件
+      }
+      bind() {
+        this.links.forEach((item, i) => {
+          item.addEventListener("click", () => {
+            this.action(i);
+          });
+        });
+      }
+      action(i) {
+        Panel.hideAll(Panel.filter(this.panels, i), () => this.panels[i].show());
+      }
+    }
+    class Panel extends Animation {
+      static num = 0;
+      static hideAll(items, callback) {
+        if (Panel.num > 0) return;
+        items.forEach((item) => {
+          Panel.num++;
+          item.hide(() => {
+            Panel.num--;
+          });
+        });
+        callback && callback();
+      }
+      static filter(items, i) {
+        return items.filter((item, index) => index != i);
+      }
+    }
+    let a = new Slide(".s1");
+  </script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>类的语法+原理</title>
+  </head>
+  <body></body>
+  <script>
+    class User {
+      show() {
+        console.log("show");
+      } //这边不要逗号
+      get() {}
+    }
+    console.log(typeof User); //function
+
+    let a = class {}; //一次性类？
+    let b = new User();
+    b.show();
+
+    class Name {
+      constructor(name) {
+        this.name = name;
+      }
+      getName() {
+        return this.name;
+      }
+    }
+    let xh = new Name("xiaohong");
+    console.log(xh.getName());
+
+    //类和函数一样，原型机制
+    //不同在于，类里面定义的属性是自己的，方法都会自动归到prototype中
+    console.dir(Name);
+    console.dir(xh);
+
+    //class里面定义的方法是不允许被遍历的
+    for (const key in xh) {
+      console.log(key); //name
+    }
+
+    //默认类运行在严格模式下
+    class H {
+      show() {
+        function test() {
+          console.log(this);
+        }
+        test();
+      }
+    }
+    let h = new H();
+    h.show(); //underfined
+  </script>
+</html>

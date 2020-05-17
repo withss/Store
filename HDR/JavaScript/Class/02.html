@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>静态属性+静态方法</title>
+  </head>
+  <body></body>
+  <script>
+    //静态属性：分配给构造函数自己的属性
+    function User() {
+      const URL = "www.baidu.com";
+    }
+    let a = new User();
+    console.dir(a); //没有URL
+
+    //类里面的实现,静态属性，节省内存
+    class Request {
+      static U = "www.baidu.com";
+      //这里并不能把api的定义看成是Request词法作用域里面的方法，而是Request.prototype里面的方法。
+      api(url) {
+        return Request.U + `/${url}`;
+      }
+      //静态方法
+      static show = function () {
+        console.log("static.show");
+      };
+    }
+    let b = new Request();
+    console.dir(b);
+    console.dir(Request);
+    console.log(b.api("article"));
+
+    //实例
+    class Member {
+      constructor(name, age, sex) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+      }
+      static create(...args) {
+        // console.log(args);
+        return new this(...args);
+      }
+    }
+    let xm = Member.create("xiaoming", 22, "male");
+    console.log(xm.age);
+  </script>
+</html>

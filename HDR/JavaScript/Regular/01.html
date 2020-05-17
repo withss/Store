@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>正则表达式</title>
+  </head>
+  <body>
+    <!-- 对字符串的增删改查  -->
+    <!-- replace,substring,substr,slice... -->
+    <script>
+      let s = "xiaohong22xiaoming18";
+      let newstr = [...s].filter((item) => !Number.isNaN(parseInt(item)));
+      console.log(newstr.join(""));
+      //用正则表达式找
+      console.log(s.match(/\d/g).join(""));
+      console.log(/m/.test(s)); //true
+
+      let xh = "xiaohong";
+      //字面量的形式
+      console.log(eval(`/${xh}/`).test(s)); //true
+    </script>
+  </body>
+</html>

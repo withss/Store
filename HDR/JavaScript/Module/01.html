@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模块管理引擎</title>
+  </head>
+  <body></body>
+  <script>
+    //AMD require.js  CMD sea.js  COMMONJS NODE.js
+    //UMD
+    let module = (function () {
+      const moduleList = {};
+      function define(name, modules, action) {
+        modules.map((m, i) => {
+          modules[i] = moduleList[m];
+        });
+        moduleList[name] = action.apply(null, modules);
+        // console.log(moduleList);
+      }
+      return { define };
+    })();
+    //初始化的时候才会执行这段代码
+    module.define("a", [], function () {
+      return {
+        first(arr) {
+          return arr[0];
+        },
+        max(arr, key) {
+          return arr.sort((a, b) => b[key] - a[key])[0];
+        },
+      };
+    });
+    module.define("lesson", ["a"], function (a) {
+      let data = [
+        { name: "html;", price: 88 },
+        { name: "css;", price: 108 },
+        { name: "js;", price: 99 },
+      ];
+      console.log(a.max(data, "price"));
+    });
+  </script>
+</html>

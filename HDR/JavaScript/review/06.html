@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="06.css" />
+    <title>apply/call的实例</title>
+  </head>
+  <body>
+    <dl>
+      <dt>number1</dt>
+      <dd>description1</dd>
+      <dt>number2</dt>
+      <dd class=".hide">description2</dd>
+    </dl>
+    <script>
+      let dts = document.querySelectorAll("dt");
+      let dds = document.querySelectorAll("dd");
+      dts.forEach((item, index) => {
+        item.addEventListener("click", function () {
+          show(index);
+        });
+      });
+      function show(i) {
+        dds.forEach((item) => item.classList.add("hide"));
+        dds[i].classList.remove("hide");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <button message="后盾人">button</button>
+    <button message="hdcms">button</button>
+  </body>
+
+  <script>
+    //TODO 原型之后，理解这边的代码
+    let btns = document.querySelectorAll("button");
+    Array.prototype.map.call(btns, (item) => {
+      item.style.background = "red";
+    });
+
+    const arr = [1, 2, 3, 4];
+    console.log(arr.copyWithin(2, 0, 1)); //[1, 2, 1, 2]
+  </script>
+</html>

@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 200px;
+  input {
+    width: 200px;
+    border: solid 1px orangered;
+    outline: none;
+    padding: 10px;
+  }
+  ul {
+    list-style: none;
+    width: 200px;
+    padding-top: 20px;
+    li {
+      border: solid 1px #ddd;
+      padding: 10px;
+      //   margin-bottom: -1px;
+      &:nth-of-type(odd) {
+        background: #00b894;
+      }
+    }
+  }
+}

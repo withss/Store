@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>字符边界约束</title>
+  </head>
+  <body>
+    <div style="color: #999;">"请输入3~6位字母"</div>
+    <input type="text" name="user" />
+    <span></span>
+    <script>
+      document.querySelector("[name='user']").addEventListener("keyup", function () {
+        let flag = this.value.match(/^[a-z]{3,6}$/);
+        document.querySelector("span").innerHTML = flag ? "正确" : "";
+      });
+    </script>
+  </body>
+</html>

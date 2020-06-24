@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #192a56;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body div {
+  text-transform: upperCase;
+  font-size: 5em;
+  font-weight: bold;
+  color: #8e44ad;
+  cursor: pointer;
+}
+body div span {
+  display: inline-block;
+}
+.color {
+  animation: color 1s 2 linear alternate;
+}
+@keyframes color {
+  50% {
+    color: #f1c40f;
+    transform: scale(2);
+  }
+  to {
+    color: #e74c3c;
+    transform: scale(0.5);
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="07.css" />
+    <title>bind的实例</title>
+  </head>
+  <body>
+    <ul>
+      <li>number1</li>
+      <li>number2</li>
+      <li>number3</li>
+      <li>number4</li>
+    </ul>
+
+    <script>
+      // let div = document.querySelector("div");
+
+      function changeColor(colors, ...elem) {
+        this.colors = colors;
+
+        setInterval(function () {
+          let num = Math.floor(Math.random() * colors.length);
+          let bgcolor = colors[num];
+          elem.forEach((item) => (item.style.backgroundColor = bgcolor));
+        }, 1000);
+      }
+
+      let lis = document.querySelectorAll("li");
+      let colors1 = ["#74b9ff", "#ffeaa7"];
+      let colors2 = ["#a29bfe", "#00cec9"];
+      let colors3 = ["#fab1a0", "#fd79a8"];
+      let colors4 = ["#ff7675", "#b2bec3"];
+
+      let user1 = new changeColor(colors1, lis[0]);
+      let user2 = new changeColor(colors2, lis[1]);
+      let user3 = new changeColor(colors3, lis[2]);
+      let user4 = new changeColor(colors4, lis[3]);
+    </script>
+  </body>
+</html>

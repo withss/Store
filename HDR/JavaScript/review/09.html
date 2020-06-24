@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="Zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>继承内置对象</title>
+  </head>
+  <body>
+    <script>
+      //继承数组，这边在传参时要注意，接收参数要展开，不然只接收第一个
+      //super()的参数也要展开，因为只接受类数组
+      class Arr extends Array {
+        constructor(...args) {
+          super(...args);
+        }
+        max() {
+          console.log(this);
+
+          return Math.max(...this);
+        }
+      }
+      let a = new Arr(1, 2, 3, 5, 10, 6, 8);
+      console.log(a.max());
+      // console.log(a.ordered);
+    </script>
+  </body>
+</html>

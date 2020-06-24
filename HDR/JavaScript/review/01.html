@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body></body>
+  <script>
+    //对于变量提升的理解
+    var web = "houdunren";
+    function hd() {
+      if (false) {
+        var web = "后盾人"; //这边的变量已经提升，所以是undefied
+      }
+      console.log(web);
+    }
+    hd(); //undefined
+  </script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="Zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深拷贝</title>
+  </head>
+  <body>
+    <script>
+      //浅拷贝对引用值只拷贝地址，深拷贝则用到递归。
+      //这边并没有考虑到函数对象吧？？？
+      function copy(obj) {
+        let res = obj instanceof Array ? [] : {};
+        for (let [k, v] of Object.entries(obj)) {
+          res[k] = typeof v == Object ? copy(v) : v;
+        }
+        return res;
+      }
+      let xh = {
+        name: "xiaohong",
+        grade: {
+          html: 88,
+          css: 99,
+        },
+        friends: ["xm", "xj"],
+      };
+      let xm = copy(xh);
+      xm.name = "xiaoming";
+      xm.friends = ["xh", "xj"];
+      console.log(xh);
+      console.log(xm);
+    </script>
+  </body>
+</html>

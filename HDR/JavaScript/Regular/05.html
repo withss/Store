@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>原子组用来替换标签</title>
+  </head>
+  <body>
+    <script>
+      let name = `
+        <h1>xiaohong</h1>
+        <span>xiaoming</span>
+        <h2>xiaojun</h2>
+        `;
+      let reg = /<(h[1-6])>([\s\S]+)<\/\1>/gi;
+      // console.dir(reg);
+
+      console.dir(name.match(reg)); //返回数组
+      //replace可以接受正则表达式，每一个都替换
+      //直接替换或者写函数
+      // console.log(name.replace(reg, `<p>$2</p>`));
+
+      //这边的p0是找到的内容，p1,p2,是原子组的内容
+      console.log(name.replace(reg, (p0, p1, p2) => `<p>${p2}</p>`));
+    </script>
+  </body>
+</html>

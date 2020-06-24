@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 200px;
+}
+body input {
+  width: 200px;
+  border: solid 1px orangered;
+  outline: none;
+  padding: 10px;
+}
+body ul {
+  list-style: none;
+  width: 200px;
+  padding-top: 20px;
+}
+body ul li {
+  border: solid 1px #ddd;
+  padding: 10px;
+}
+body ul li:nth-of-type(odd) {
+  background: #00b894;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>转义</title>
+  </head>
+  <body>
+    <script>
+      //转义
+      let price = 3.4;
+      console.log(/\d+\.+\d+/.test(price)); //true
+      console.log("\d+\.+\d+"); //打印看一看
+      //双引号包裹的正则表达式，跟原先的不一样，要转义
+      let reg2 = new RegExp("\\d+\\.+\\d+");
+      console.log(reg2.test(price)); //true
+
+      let url = "https://www.baidu.com";
+      console.log(/https?:\/\/\w+\.\w+\.\w+/.test(url)); //true
+    </script>
+  </body>
+</html>

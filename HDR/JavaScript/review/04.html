@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="04.css" />
+    <title>数组动画demo</title>
+  </head>
+  <body>
+    <div>jinmengsi</div>
+    <script>
+      const div = document.querySelector("div");
+      [...div.textContent].reduce((pre, cur, index) => {
+        pre == index && (div.innerHTML = "");
+        let span = document.createElement("span");
+        span.innerHTML = cur;
+        div.appendChild(span);
+        span.addEventListener("mouseover", function () {
+          this.classList.add("color");
+        });
+        span.addEventListener("animationend", function () {
+          this.classList.remove("color");
+        });
+      }, 0);
+    </script>
+  </body>
+</html>

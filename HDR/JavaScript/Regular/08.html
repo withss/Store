@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>$&,$'</title>
+  </head>
+  <body>
+    <p>百度是一个搜索网站，百度</p>
+    <main>
+      <span>baidu.com</span>
+      <span>google.com</span>
+      <span>firefox.com</span>
+    </main>
+    <script>
+      //$& 匹配内容本身
+      let p = document.querySelector("p");
+      p.innerHTML = p.innerHTML.replace(/百度/g, `<a href="www.baidu.com">$&</a>`);
+
+      //$&
+      let tel = "(010)99999999";
+      //replace 要和正则一起用
+      tel = tel.replace(/\((\d{3,4})\)(\d{7,8})/, "$1-$2");
+      console.log(tel);
+
+      //$` $' 匹配内容的左右两边
+      tel = tel.replace(/-/, "$`");
+      console.log(tel);
+
+      //split与正则表达式
+      let date = "2020-05/20";
+      console.log(date.split(/[-\/]/));
+
+      let n = 7;
+      console.log(n / 2);
+      console.log(Boolean([]));
+      console.log("abc".match(/d/g));
+    </script>
+  </body>
+</html>

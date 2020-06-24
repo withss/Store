@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="05.css" />
+    <title>Set搜索实例</title>
+  </head>
+  <body>
+    <input type="text" />
+    <ul></ul>
+    <script>
+      let obj = {
+        words: new Set(),
+        keywords(word) {
+          this.words.add(word);
+        },
+        show() {
+          let ul = document.querySelector("ul");
+          ul.innerHTML = "";
+          this.words.forEach((item) => {
+            ul.innerHTML += `<li>${item}</li>`;
+          });
+        },
+      };
+      document.querySelector("input").addEventListener("blur", function () {
+        obj.keywords(this.value);
+        obj.show();
+      });
+    </script>
+  </body>
+</html>

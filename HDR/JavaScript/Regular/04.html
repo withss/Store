@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>修正符</title>
+  </head>
+  <body>
+    <script>
+      //g全局搜素，i不区分大小写，m每一行单独处理
+      let str = `
+      #1 html,88分 #
+      #2 css,98分 #
+
+      #3 baidu,www.baidu.com # website
+
+      #4 js,108分 #
+
+      `;
+      //   console.log(str);
+      //发现字面量也就是自己，没有父级
+
+      let arr = str.match(/#\d+\s+.+\s+#$/gm);
+      console.log(arr);
+      let narr = arr.map((item) => {
+        let t = item.replace(/\s*#\d\s/, "").replace(/\s*#/, "");
+        let [name, grades] = t.split(",");
+        return { name, grades };
+      });
+      console.log(JSON.stringify(narr, null, 2));
+    </script>
+  </body>
+</html>

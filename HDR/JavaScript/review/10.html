@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="Zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>继承内置对象</title>
+  </head>
+  <body>
+    <div id="hd">houdunren.com</div>
+    <input type="text" name="title" id="title" />
+    <script>
+      let hd = document.getElementById("hd");
+      function prototype(el) {
+        let proto = Object.getPrototypeOf(el);
+        console.dir(proto);
+        Object.getPrototypeOf(proto) ? prototype(proto) : "";
+      }
+      prototype(hd);
+    </script>
+  </body>
+</html>
